@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LOTIZACION</title>
+  <style>
+    :root{--accent:#0b74de;--muted:#666}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0;color:#222}
+    header{background:linear-gradient(90deg,#063b6b 0%,#0b74de 100%);color:#fff;padding:20px}
+    .container{max-width:1100px;margin:18px auto;padding:0 18px}
+    .top{display:flex;align-items:center;gap:18px}
+    .brand{font-size:20px;font-weight:700}
+    nav a{color:#fff;text-decoration:none;margin-left:14px}
+    .hero{display:flex;gap:20px;align-items:center;padding:28px 0}
+    .hero .left{flex:1}
+    .hero h1{font-size:34px;margin:0}
+    .hero p{color:var(--muted);margin:8px 0}
+    .card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 6px 20px rgba(15,23,42,0.06)}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .map-wrap iframe{width:100%;height:380px;border:0;border-radius:8px}
+    .section{margin-top:18px}
+    footer{padding:24px 0;color:#666;font-size:14px}
+    .edit-toolbar{position:fixed;right:18px;top:18px;background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:999}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none}
+    label{font-size:13px;color:#333;display:block;margin-top:10px}
+    input[type=text],textarea,select{width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;margin-top:6px}
+    .small{font-size:13px;color:var(--muted)}
+    .links-list a{display:block;margin-bottom:6px;color:var(--accent)}
+    .editable{outline:2px dashed rgba(11,116,222,0.12);padding:4px;border-radius:4px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container top">
+      <div class="brand" id="brand" contenteditable="true">Buenavista - Nombre de tu proyecto</div>
+      <nav style="margin-left:auto">
+        <a href="#info" id="nav-info">Proyecto</a>
+        <a href="#mapcontent" id="nav-map">Mapa</a>
+        <a href="#contact" id="nav-contact">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <div class="grid">
+        <div class="left">
+          <h1 id="title" contenteditable="true">LOTIZACION</h1>
+          <p id="subtitle" contenteditable="true">Subtítulo breve: ubicación, concepto y beneficiarios.</p>
+
+          <div class="section">
+            <h3>Detalles del proyecto</h3>
+            <div id="project-details" contenteditable="true" class="editable">
+              <p>Aquí puede escribir la descripción completa del proyecto: características, etapas, áreas, precios, plazos y cualquier información que desee mostrar.</p>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Enlaces rápidos</h3>
+            <div class="links-list" id="links-list"></div>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h4>Ubicación</h4>
+          <div id="mapcontent" class="map-wrap">
+            <iframe id="map-iframe" src="https://maps.google.com/maps?q=Llano%20-%20ubicacion&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+          </div>
+
+          <div class="section">
+            <h4>Contacto</h4>
+            <div id="contact" contenteditable="true" class="editable">
+              <p>Empresa S.A. | teléfono: (01) 000-0000 | correo@ejemplo.com</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h3>Galería / Planos</h3>
+      <p class="small">Puede reemplazar estas imágenes con las suyas subiendo en su servidor y cambiando los &lt;img&gt; src.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px">
+        <img src="https://via.placeholder.com/320x180?text=Imagen+1" alt="img1" style="width:100%;border-radius:8px">
+        <img src="https://via.placeholder.com/320x180?text=Imagen+2" alt="img2" style="width:100%;border-radius:8px">
+        <img src="https://via.placeholder.com/320x180?text=Imagen+3" alt="img3" style="width:100%;border-radius:8px">
+      </div>
+    </section>
+
+    <footer class="container">
+      <div class="card" style="padding:12px">
+        <div contenteditable="true" id="footer-text">© 2025 Tu Empresa - Todos los derechos reservados.</div>
+      </div>
+    </footer>
+  </main>
+
+  <div class="edit-toolbar card" id="editor">
+    <strong>Panel de edición</strong>
+    <label>Nombre/Marca</label>
+    <input type="text" id="inp-brand" placeholder="Buenavista - Nombre">
+    <label>Título de la página</label>
+    <input type="text" id="inp-title" placeholder="Título del proyecto">
+    <label>Subtítulo</label>
+    <input type="text" id="inp-subtitle" placeholder="Subtítulo corto">
+    <label>Iframe mapa (URL)</label>
+    <input type="text" id="inp-map" placeholder="https://maps.google.com/...">
+    <label>Contacto (HTML)</label>
+    <textarea id="inp-contact" rows="3"></textarea>
+    <label>Agregar hipervínculo (texto|url)</label>
+    <input type="text" id="inp-link" placeholder="Ficha técnica|https://ejemplo.com/ficha">
+    <button class="btn" id="add-link">Agregar enlace</button>
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <button class="btn" id="apply">Aplicar cambios</button>
+      <button class="btn" id="download">Descargar HTML</button>
+    </div>
+    <p class="small" style="margin-top:8px">Los campos editables en la página también se pueden editar directamente haciendo clic sobre ellos.</p>
+  </div>
+
+  <script>
+    const setText = (id, value)=>document.getElementById(id).textContent = value;
+    document.getElementById('apply').addEventListener('click',()=>{
+      const b=document.getElementById('inp-brand').value;
+      const t=document.getElementById('inp-title').value;
+      const s=document.getElementById('inp-subtitle').value;
+      const m=document.getElementById('inp-map').value;
+      const c=document.getElementById('inp-contact').value;
+      if(b) setText('brand', b);
+      if(t) setText('title', t);
+      if(s) setText('subtitle', s);
+      if(c) document.getElementById('contact').innerHTML = c;
+      if(m) document.getElementById('map-iframe').src = m;
+      saveToLocal();
+      alert('Cambios aplicados.');
+    });
+    document.getElementById('add-link').addEventListener('click',()=>{
+      const v=document.getElementById('inp-link').value.trim();
+      if(!v.includes('|')){alert('Use formato: Texto|https://...');return}
+      const [txt,url]=v.split('|');
+      const a=document.createElement('a');
+      a.href=url.trim();a.target='_blank';a.textContent=txt.trim();
+      document.getElementById('links-list').appendChild(a);
+      document.getElementById('inp-link').value='';
+      saveToLocal();
+    });
+    document.getElementById('download').addEventListener('click',()=>{
+      const doc=document.documentElement.cloneNode(true);
+      const tb=doc.querySelector('#editor');if(tb) tb.remove();
+      const serializer=new XMLSerializer();
+      const str='<!-- Exportado -->\n'+serializer.serializeToString(doc);
+      const blob=new Blob([str],{type:'text/html'});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');a.href=url;a.download='index.html';document.body.appendChild(a);a.click();a.remove();
+      URL.revokeObjectURL(url);
+    });
+    function saveToLocal(){
+      const state={
+        brand:brand.innerHTML,title:title.innerHTML,subtitle:subtitle.innerHTML,
+        details:document.getElementById('project-details').innerHTML,
+        contact:contact.innerHTML,map:document.getElementById('map-iframe').src,
+        links:Array.from(document.getElementById('links-list').querySelectorAll('a')).map(a=>({t:a.textContent,u:a.href})),
+        footer:document.getElementById('footer-text').innerHTML
+      };
+      localStorage.setItem('plantilla_state',JSON.stringify(state));
+    }
+    function loadFromLocal(){
+      const s=localStorage.getItem('plantilla_state');if(!s)return;
+      try{const st=JSON.parse(s);
+        if(st.brand) brand.innerHTML=st.brand;
+        if(st.title) title.innerHTML=st.title;
+        if(st.subtitle) subtitle.innerHTML=st.subtitle;
+        if(st.details) document.getElementById('project-details').innerHTML=st.details;
+        if(st.contact) contact.innerHTML=st.contact;
+        if(st.map) document.getElementById('map-iframe').src=st.map;
+        if(st.links){const ll=document.getElementById('links-list');ll.innerHTML='';st.links.forEach(x=>{const a=document.createElement('a');a.href=x.u;a.target='_blank';a.textContent=x.t;ll.appendChild(a)})}
+        if(st.footer) document.getElementById('footer-text').innerHTML=st.footer;
+      }catch(e){console.warn(e)}
+    }
+    window.addEventListener('beforeunload', saveToLocal);
+    loadFromLocal();
+  </script>
+</body>
+</html>
